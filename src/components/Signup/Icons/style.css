@@ -1,0 +1,11 @@
+.iconsDiv {
+    position: relative;
+}
+
+.icons {
+    width: 220px;
+    position: absolute;
+    top: -55px;
+    left: 130px;
+
+}

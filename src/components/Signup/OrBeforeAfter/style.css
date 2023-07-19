@@ -1,0 +1,28 @@
+.line-wrapper {
+    position: relative;
+    display: inline-block;
+    top:50px;
+    left: 220px;
+    color: #F5F5F5;
+  }
+ 
+
+  .line-wrapper::before,
+  .line-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    width: 150px;
+    height: 1px;
+    background-color: #F5F5F5;
+  }
+
+  .line-wrapper::before {
+    right: 100%;
+    margin-right: 10px;
+  }
+
+  .line-wrapper::after {
+    left: 100%;
+    margin-left: 10px;
+  }

@@ -1,0 +1,87 @@
+.form-container {
+  overflow-y: auto;  
+  max-height: 550px; 
+}
+
+
+.formlogin {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 30px auto auto 0px;
+  font-weight: 500;
+  font-family: Inter;
+
+}
+
+.labellogin,
+.register {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #696F79;
+
+}
+
+.inputlogin {
+  padding: 5px;
+  width: 426px;
+  height: 40px;
+  border-radius: 6px;
+  border-color: #696F79;
+
+
+}
+
+.inputlogin::placeholder {
+  font-size: 12px;
+  line-height: 21px;
+  text-align: left;
+  padding-left: 10px;
+
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1565D8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  margin-left: 8px;
+}
+
+.checkbox-label::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #1565D8;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.checkbox-input[type="checkbox"] {
+  display: none;
+}
+
+ .checkbox-input:checked+.checkbox-label::before {
+  background-color: #1565D8;
+}
+.regster-account{
+  width: 445px;
+  height: 50px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.btn_lg{
+  width: 426px;
+height: 54px;
+margin: 20px 0px 20px 5px;
+border-radius: 6px;
+background-color: #fff;
+color: #1565D8;
+box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}

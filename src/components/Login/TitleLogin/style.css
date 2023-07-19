@@ -1,0 +1,19 @@
+.titlelogindiv {
+    font-family: Inter;
+}
+
+.titlelogin {
+    padding-top: 60px;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: left;
+
+}
+
+.gamerslogin {
+    font-size: 18px;
+    font-weight: 400;
+    color: #8692A6;
+    text-align: left;
+
+}

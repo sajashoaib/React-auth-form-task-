@@ -1,0 +1,33 @@
+.logo {
+  line-height: 36px;
+  font-family: Inter;
+  color: #696F79;
+}
+
+.dot {
+  width: 20px;
+}
+
+p,
+h4 {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.control {
+  position: absolute;
+  bottom: -200px;
+  left: 300px;
+  top: 270px;
+  width: 250px;
+}
