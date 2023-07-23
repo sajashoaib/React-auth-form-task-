@@ -167,6 +167,7 @@ class FormLogin extends React.Component {
 
     render() {
         const { username, phone, repeatPassword, email, lineColor, lineLength, isAgreed, errors } = this.state;
+        const { onLogin } = this.props;
 
         return (
 
@@ -256,7 +257,7 @@ class FormLogin extends React.Component {
                     <button className="regster-account" type="submit">Register Account</button>
                     <OrBeforeAfterLogin />
                 </form>
-                <button className="btn_lg">Login</button>
+                <button className="btn_lg" type='button' onClick={() => this.props.onLogin()}>Login</button>
             </div>
         );
     }

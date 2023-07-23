@@ -22,7 +22,7 @@ class Login extends React.Component {
         <div className='childDiv-login '>
           <Container>
              <TitleLogin/>
-             <FormLogin/>
+             <FormLogin onLogin={this.props.onLogin}/>
           </Container>
         
                  </div> 
