@@ -1,0 +1,46 @@
+.icon {
+    font-size: 25px;
+    color: #2e2d2db3;
+}
+.dark .icon{
+    color:rgba(255, 255, 255, 0.5);
+}
+
+.theme {
+    background-color: #C1C1C1;
+    
+    padding: 18px 0;
+    border-radius: 25px;
+}
+.dark .theme{
+    background-color:#515151;
+    ;
+}
+.sidebar {
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 0px 20px;
+    height: 80vh;
+    margin-top: 15px;
+}
+
+.dark .sidebar{
+    border-right: 1px solid rgb(60, 59, 59);
+
+}
+.sidebars {
+    gap: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-item {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.usercontent{
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: space-between;
+    /* flex-direction: row; */
+    padding: 10px;
+
+}
+.tabel{
+    flex: 1;
+}

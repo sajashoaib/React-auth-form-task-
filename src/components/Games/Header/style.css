@@ -1,0 +1,27 @@
+.headergames {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px 5px 12px;
+    /* border-bottom: 1px solid black; */
+}
+
+.headergames img {
+    width: 60px;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #000000;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+}
+.dark .profile{
+    color: #fffafa;
+
+}

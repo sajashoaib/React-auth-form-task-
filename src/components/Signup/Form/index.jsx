@@ -1,136 +1,121 @@
-import './style.css'
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import LoginPage from '../../../pages/LoginPage';
+import './style.css';
+import { useAuthContext } from '../../contexts/AuthContext';
 
-class Form extends React.Component {
-   constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            showPassword: false,
-            errors: {
-              email: '',
-              password: '',
-            },
-        };
+const Form = () => {
+  const { login, isLooading } = useAuthContext();
+  const [data, setData] = useState({
+    email: " ",
+    password: " "
+  });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    login(data)
+  };
+  const handelChangeInput = ({ target: { value, name } }) => {
+    setData(prevState => ({ ...prevState, [name]: value }))
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let newErrors = { ...errors };
+
+    switch (name) {
+      case 'email':
+        newErrors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ''
+          : 'Invalid email address';
+        break;
+      case 'password':
+        newErrors.password =
+          value.length >= 6 ? '' : 'Password must be at least 6 characters long';
+        break;
+      default:
+        break;
     }
 
+    setErrors(newErrors);
 
-    togglePasswordVisibility = () => {
-        this.setState((prevState) => ({
-            showPassword: !prevState.showPassword,
-        }));
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
     }
-    
+  };
 
-    handleChange = (e) => {
-        const { name, value } = e.target;
-        let errors = { ...this.state.errors };
-    
-        switch (name) {
-          case 'email':
-            errors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-              ? ''
-              : 'Invalid email address';
-            break;
-          case 'password':
-            errors.password =
-              value.length >= 6 ? '' : 'Password must be at least 6 characters long';
-            break;
-          default:
-            break;
-        }
-    
-        this.setState({
-          [name]: value,
-          errors,
-        });
-      };
-    
-      handleSubmit = (e) => {
-        e.preventDefault();
-        const { email, password, errors } = this.state;
-    
-        if (email && password && !errors.email && !errors.password) {
-          // Valid form, submit data or perform other actions
-          console.log('Form is valid');
-        } else {
-          // Invalid form, display error messages or prevent form submission
-          console.log('Form is invalid');
-        }
-      };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
+  //   if (email && password && !errors.email && !errors.password) {
+  //     // Valid form, submit data or perform other actions
+  //     console.log('Form is valid');
+  //   } else {
+  //     // Invalid form, display error messages or prevent form submission
+  //     console.log('Form is invalid');
+  //   }
+  // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    render() {
-        const { password, showPassword, errors,email} = this.state;
-
-      
-        return (
-            <div>
-                <form className='formsignup '  onSubmit={this.handleSubmit} >
-                <div>
+  return (
+    <div>
+      <form className="formsignup" onSubmit={handleSubmit}>
+        <div>
           <label>Email:</label>
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
+          <input type="text" name="email" value={data.email} onChange={handelChangeInput} />
           {errors.email && <span>{errors.email}</span>}
         </div>
 
-                    <div className="password-input">
-                        <label htmlFor="password">Enter Your Password:</label>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={this.handleChange}
-                            placeholder='•••••••••'
-                        />
-                        <FontAwesomeIcon
-                            icon={showPassword ? faEyeSlash : faEye}
-                            className="password-icon"
-                            onClick={this.togglePasswordVisibility}
-                        />
-                       {errors.password && <span>{errors.password}</span>}
+        <div className="password-input">
+          <label htmlFor="password">Enter Your Password:</label>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            name="password"
+            value={data.password}
+            onChange={handelChangeInput}
+            placeholder="•••••••••"
+          />
+          <FontAwesomeIcon
+            icon={showPassword ? faEyeSlash : faEye}
+            className="password-icon"
+            onClick={togglePasswordVisibility}
+          />
+          {errors.password && <span>{errors.password}</span>}
+        </div>
 
-                    </div>      
+        <button  type='submit'>{isLooading ? 'loading...':'login'}</button>
 
-          <button>Login</button>
-                </form> 
-                
-            </div>
-        );
-    }
+      </form>
+    </div>
+  );
 };
-
-
 
 export default Form;

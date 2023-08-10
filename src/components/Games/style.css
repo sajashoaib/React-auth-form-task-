@@ -1,0 +1,23 @@
+#games{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+.main{
+    display: flex;
+    /* gap: 20px; */
+    align-items: flex-start;
+    justify-content: flex-start;
+    /* flex: 2; */
+    padding-top: 5px;
+}
+.light{
+    background-color:#ffffff ;
+    color:black
+  }
+  .dark{
+    background: linear-gradient(134deg, #222 0%, #222 100%);
+
+    color:white
+  }

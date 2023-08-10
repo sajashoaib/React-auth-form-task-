@@ -1,0 +1,77 @@
+.cards {
+    display: flex;
+    overflow-x: scroll;
+    color: rgb(4, 119, 119);
+    overflow-y: hidden;
+}
+
+.cards::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+
+.cards .card1 {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 900px;
+    height: 270px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-right: 20px;
+    padding-right: 30px;
+    position: relative;
+
+
+
+}
+
+.card1 div {
+    width: 40%;
+}
+
+.card1 img {
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    width: 280px;
+
+
+
+
+}
+
+.card1 .ma1:hover {
+    transform: scale(1.1);
+    transform-origin: center;
+
+}
+
+.imgscard1 {
+    display: flex;
+    flex-direction: column;
+    /* justify-content:space-between; */
+    align-items: flex-end;
+
+    /* align-self: self-start; */
+
+    /* position: absolute;
+    right: 0;
+    bottom: 5px; */
+    min-width: 50%;
+
+}
+
+.imgscard1 .man1 {
+    width: 180px;
+}
+
+.card-description {
+    color: #FFF;
+    text-align: left;
+    font-family: Gilroy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

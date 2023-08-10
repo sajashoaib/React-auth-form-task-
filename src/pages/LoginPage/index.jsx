@@ -27,7 +27,6 @@ class LoginPage extends Component {
          <span className="backpara"  onClick={this.handleSignClick}>
             <FontAwesomeIcon icon={faArrowLeft} className="back-icon" />
            Back</span>
-           {/* <button className="btn" onClick={this.handleSignClick}>go</button> */}
               <Login onLogin={this.props.onLogin}>
 
                 </Login>

@@ -1,0 +1,23 @@
+#dataprofile{
+    display: flex;
+    /* justify-content: space-; */
+    gap: 60px;
+}
+.info h2{
+    color: #FF9EAA;
+    background-color:#3AA6B9;
+    padding: 40px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 10px 15px 6px #afb1b3;
+
+}
+.info p{
+    color: #fd8391;
+    /* color: #D8D8D8; */
+font-family: Gilroy;
+font-size: 22px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}

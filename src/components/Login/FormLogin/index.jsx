@@ -1,268 +1,189 @@
-import './style.css'
-import React from 'react';
+import './style.css';
+import React, { useState} from 'react';
 import OrBeforeAfterLogin from '../OrBeforeAfterLogin';
-class FormLogin extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            repeatPassword: '',
-            strength: '',
-            lineColor: '#C4C4C4',
-            lineLength: 0,
-            isAgreed: false,
+import { useAuthContext } from '../../contexts/AuthContext'
+import * as Yup from "yup"
 
-            errors: {
-                username: '',
-                phone: '',
-                email: '',
-                password: '',
-                repeatPassword: '',
-                isAgreed: '',
+const formSchema = Yup.object({
+    name: Yup.string()
+        .required('Name is required'),
+    password: Yup.string()
+        .min(8, 'Password must be at least 8 characters')
+        .required('Password is required'),
+    rePassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Please re-enter your password'),
+    email: Yup.string()
+        .email('Invalid email address')
+        .required('Email is required'),
+    checkbox: Yup.boolean()
+        .oneOf([true], 'You must accept the terms and conditions'),
+})
 
-            },
-
-        };
-    }
-
-    handleChanges = (event) => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value,
-        });
-        const password = event.target.value;
-        this.setState({ password }, () => {
-            this.updateStrength();
-            this.updateLineColor();
-        });
-    };
-
-    handleChangess = (event) => {
-        const { name, value, } = event.target;
-        this.setState({ [name]: value }, () => {
-            this.validateField(name, value);
-        });
-
-    };
+const FormLogin = () => {
+    const { signup, isLooading } = useAuthContext();
+    const [data, setData] = useState({
+        name: '',
+        email: "",
+        password: '',
+        rePassword: '',
+        checkbox: false
+    });
+    const [errors, setErrors] = useState({});
 
 
 
-    validateField = (fieldName, value) => {
-        let { emailValid, passwordValid, repeatPasswordValid } = this.state;
-
-        switch (fieldName) {
-            case 'email':
-                emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-                break;
-            case 'password':
-                passwordValid = value.length >= 6;
-                break;
-            case 'repeatPassword':
-                repeatPasswordValid = value === this.state.password;
-                break;
-            default:
-                break;
-        }
-
-        this.setState(
-            {
-                emailValid,
-                passwordValid,
-                repeatPasswordValid
-            },
-            this.validateForm
-        );
-    };
+    const [lineColor, setLineColor] = useState('#C4C4C4');
+    const [lineLength, setLineLength] = useState(0);
 
 
-
-    updateStrength = () => {
-        const { password } = this.state;
-        let strength = '';
-
-        if (password.length < 6) {
-            strength = 'Weak';
-        } else if (password.length < 10) {
-            strength = 'Medium';
-        } else {
-            strength = 'Strong';
-        }
-
-        this.setState({ strength });
-    };
-
-    updateLineColor = () => {
-        const { strength } = this.state;
-        let lineColor = '#C4C4C4';
-        let lineLength = 0;
-
-        if (strength === 'Weak') {
-            lineColor = 'red';
-            lineLength = 20;
-        } else if (strength === 'Medium') {
-            lineColor = 'orange';
-            lineLength = 50;
-        } else if (strength === 'Strong') {
-            lineColor = 'green';
-            lineLength = 100;
-        }
-
-        this.setState({ lineColor, lineLength });
-    };
-
-    /********************************************************************************************* */
-
-    handleChange = (event) => {
-        const { name, value, checked, type } = event.target;
-        const newValue = type === 'checkbox' ? checked : value;
-        this.setState((prevState) => ({
-            [name]: newValue,
-            errors: {
-                ...prevState.errors,
-                [name]: '',
-            },
-        }));
-    };
-
-    handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const { username, phone, email, password, repeatPassword, isAgreed } = this.state;
+        try {
+            const formdata = await formSchema.validate(data, { abortEarly: false });
+            console.log(formdata)
 
+        } catch (error) {
 
-        const errors = {};
-        if (!username) {
-            errors.username = 'Username is required';
+            console.log(error);
+            const myErrors = {}
+            error.inner.forEach((error) => { myErrors[error.path] = error.message });
+            setErrors(myErrors);
+
         }
-        if (!phone) {
-            errors.phone = 'Phone is required';
-        } else if (!/^\d{10}$/.test(phone)) {
-            errors.phone = 'Phone must be a 10-digit number';
+        if (data.password === data.rePassword)
+            signup(
+                {
+                    name: data.name,
+                    email: data.email,
+                    password: data.password
+                }
+            );
+        else {
+            alert("please correct password")
         }
-        if (!email) {
-            errors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            errors.email = 'Invalid email format';
-        }
-        if (!password) {
-            errors.password = 'Password is required';
-        } else if (password.length < 6) {
-            errors.password = 'Password must be at least 6 characters long';
-        }
-        if (password !== repeatPassword) {
-            errors.repeatPassword = 'Passwords do not match';
-        }
-
-        if (!isAgreed) {
-            errors.isAgreed = 'Please agree to the terms and conditions';
-        }
-
-        this.setState({ errors });
-
-        if (Object.keys(errors).length === 0) {
-            console.log('Form submitted!');
-        }
-    };
-
-
-    render() {
-        const { username, phone, repeatPassword, email, lineColor, lineLength, isAgreed, errors } = this.state;
-        const { onLogin } = this.props;
-
-        return (
-
-            <div class="form-container">
-                <form className="formlogin" onSubmit={this.handleSubmit} >
-                    <div>
-                        <label className="labellogin">Username*</label>
-                        <input
-                            className='inputlogin'
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange={this.handleChange}
-                            placeholder="Enter email Name" />
-                        {errors.username && <span>{errors.username}</span>} </div>
-                    {/* /********************************************************************************* */}
-                    <div>
-                        <label className="labellogin">Phone*</label>
-                        <input
-                            className='inputlogin'
-                            type="text"
-                            name="phone"
-                            value={phone}
-                            onChange={this.handleChange}
-                            placeholder="Enter email phone" />
-                        {errors.phone && <span>{errors.phone}</span>}   </div>
-                    {/* /********************************************************************************* */}
-                    <div>
-                        <label className="labellogin" htmlFor="email">Email address*</label>
-                        <input
-                            className='inputlogin'
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter email address"
-                            value={email}
-                            onChange={this.handleChangess}
-                            required />
-                        {errors.email && <span>{errors.email}</span>}</div>
-
-                    {/* /********************************************************************************* */}
-                    <div>
-                        <label className="labellogin" htmlFor="password">Create password*</label>
-                        <input
-
-                            className='inputlogin'
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChanges}
-                            placeholder="Password" />
-                        <div
-                            style={{
-                                height: '5px',
-                                backgroundColor: lineColor,
-                                width: `${lineLength}%`,
-                                transition: 'width 0.3s ease'
-                            }}></div>
-                        {errors.password && <span>{errors.password}</span>} </div>
-                    {/* /********************************************************************************* */}
-
-                    <div>
-                        <label htmlFor="repeatPassword">Repeat Password*</label>
-                        <input
-                            className='inputlogin'
-                            type="password"
-                            id="repeatPassword"
-                            name="repeatPassword"
-                            value={repeatPassword}
-                            onChange={this.handleChange}
-                            placeholder='Repeat password' />
-                        {errors.repeatPassword && <span>{errors.repeatPassword}</span>} </div>
-                    {/* /********************************************************************************* */}
-                    <div className='checkbox-container'>
-                        <label className='checkbox-label'>
-                            I agree to the terms and conditions
-                            <input
-                                className=' checkbox-input'
-                                type="checkbox"
-                                name="isAgreed"
-                                checked={isAgreed}
-                                onChange={this.handleInputChange} />
-                        </label>
-                        {errors.isAgreed && <p className="error">{errors.isAgreed}</p>}
-                    </div>
-                    <button className="regster-account" type="submit">Register Account</button>
-                    <OrBeforeAfterLogin />
-                </form>
-                <button className="btn_lg" type='button' onClick={() => this.props.onLogin()}>Login</button>
-            </div>
-        );
     }
+
+
+
+    const handleSubmitt = async (event) => {
+        event.preventDefault();
+        try {
+            const formdata = await formSchema.validate(data, { abortEarly: false });
+            console.log(formdata)
+
+        } catch (error) {
+
+            console.log(error);
+            const myErrors = {}
+            error.inner.forEach((error) => { myErrors[error.path] = error.message });
+            setErrors(myErrors);
+
+        }
+    }
+
+    const handelChangeInput = ({ target: { value, name } }) => {
+        setData(prevState => ({ ...prevState, [name]: value }))
+    }
+
+
+    return (
+        <div className="form-container">
+            <form className="formlogin" onSubmit={handleSubmit}>
+                <div>
+                    <label className="labellogin">Username*</label>
+                    <input
+                        className="inputlogin"
+                        type="text"
+                        name="name"
+                        value={data.name}
+                        onChange={handelChangeInput}
+                        placeholder="Enter email Name"
+                    />
+                    {errors.name && <span>{errors.name}</span>}
+                </div>
+                {/* /**************************************************/}
+
+                <div>
+                    <label className="labellogin" htmlFor="email">
+                        Email address*
+                    </label>
+                    <input
+                        className="inputlogin"
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email address"
+                        value={data.email}
+                        onChange={handelChangeInput}
+                        required
+                    />
+                    {errors.email && <span>{errors.email}</span>}
+                </div>
+
+                {/* /************************************************ */}
+                <div>
+                    <label className="labellogin" htmlFor="password">
+                        Create password*
+                    </label>
+                    <input
+                        className="inputlogin"
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={data.password}
+                        onChange={handelChangeInput}
+                        placeholder="Password"
+                    />
+                    <div
+                        style={{
+                            height: '5px',
+                            backgroundColor: lineColor,
+                            width: `${lineLength}%`,
+                            transition: 'width 0.3s ease',
+                        }}
+                    ></div>
+                    {errors.password && <span>{errors.password}</span>}
+                </div>
+                {/* /************************************************************ */}
+
+                <div>
+                    <label htmlFor="rePassword">Repeat Password*</label>
+                    <input
+                        className="inputlogin"
+                        type="password"
+                        id="rePassword"
+                        name="rePassword"
+                        value={data.rePassword}
+                        onChange={handelChangeInput}
+                        placeholder="Repeat password"
+                    />
+                    {errors.rePassword && <span>{errors.rePassword}</span>}
+                </div>
+                {/* /************************************************************* */}
+                <div className="checkbox-container">
+
+                    <input
+                        className="checkbox-input"
+                        type="checkbox"
+                        name="checkbox"
+                        checked={data.checkbox}
+                        onChange={handelChangeInput}
+                    />    <label className="checkbox-label">
+                        I agree to the terms and conditions
+                    </label>
+
+                    {errors.checkbox && <p className="error">{errors.checkbox}</p>}
+                </div>
+                <button className="regster-account" type="button" onClick={handleSubmitt}>Register Account </button>
+                <OrBeforeAfterLogin />
+                <button className="btn_lg" type="submit"> {isLooading ? 'loading...' : 'Signup'}</button>
+
+
+            </form>
+
+        </div>
+    );
 };
-
-
 
 export default FormLogin;
