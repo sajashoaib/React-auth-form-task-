@@ -1,7 +1,4 @@
 import { useState } from "react";
-import SignupPage from "./pages/SignupPage";
-import FormLogin from "./components/Login/FormLogin";
-import LoginPage from "./pages/LoginPage";
 import Router from "./router";
 import AuthProvider from "./components/contexts/AuthContext";
 import ThemeProvider from "./components/contexts/ThemeContext";

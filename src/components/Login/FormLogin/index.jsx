@@ -28,11 +28,6 @@ const FormLogin = () => {
         resolver: yupResolver(formSchema)
       });
 
-
-    const [lineColor, setLineColor] = useState('#C4C4C4');
-    const [lineLength, setLineLength] = useState(0);
-
-
     const onSubmit = async (data,event) => {
         event.preventDefault();
         console.log(data)
@@ -101,8 +96,6 @@ console.log(errors)
                     <div
                         style={{
                             height: '5px',
-                            backgroundColor: lineColor,
-                            width: `${lineLength}%`,
                             transition: 'width 0.3s ease',
                         }}
                     ></div>
