@@ -4,7 +4,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px 5px 12px;
-    /* border-bottom: 1px solid black; */
 }
 
 .headergames img {
@@ -21,7 +20,8 @@
     font-style: normal;
     font-weight: 400;
 }
-.dark .profile{
+
+.dark .profile {
     color: #fffafa;
 
 }

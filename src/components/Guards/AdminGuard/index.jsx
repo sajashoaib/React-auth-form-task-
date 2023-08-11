@@ -5,7 +5,7 @@ import { ROLES } from '../../../constants';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 const AdminGuard = () => {
-    const { role } = useAuthContext();
+  const { role } = useAuthContext();
   if (role === ROLES.ADMIN) return <Outlet />;
   return <Navigate to={PATHS.LOGIN} replace={true} />;
 };

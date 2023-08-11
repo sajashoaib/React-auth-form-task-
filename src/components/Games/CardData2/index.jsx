@@ -13,19 +13,19 @@ const CardData2 = [
     }, {
         img: p3,
         description: "God Of War: Ragnarök 72.5%",
-        
+
 
 
     },
     {
         img: p4,
         description: "Crash Bandicoot N. Sane Trilogy 34%",
-          }
-          ,
+    }
+    ,
     {
         img: p5,
         description: "Dying Light 2 Stay Human 100%",
-          }
+    }
 ]
 
 export default CardData2

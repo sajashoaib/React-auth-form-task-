@@ -4,15 +4,18 @@ import { AUTH_ACTIONS, AUTH_API_PATHS } from "../../constants/auth";
 import axios from "axios";
 import { AUTH_API } from "../../config/api";
 
+
+
 const initalState = {
-    isAuth: false,
-    token: null,
-    user: null,
-    role: ROLES.GUEST,
+    isAuth: localStorage.getItem('isAuth') || false,
+    token: localStorage.getItem('token') || null,
+    user: JSON.parse(localStorage.getItem('user'))|| null,
+    // user: JSON.parse(localStorage.getItem('user')) || null,
+    role: localStorage.getItem('role') || ROLES.GUEST,
     isLooading: false,
     error: null,
     data: [],
-    users:[]
+    users: []
 };
 const reduce = (state, action) => {
     switch (action.type) {
@@ -23,11 +26,13 @@ const reduce = (state, action) => {
             };
 
         case AUTH_ACTIONS.AUTHORIZE:
-            const token = action?.payload?.token || state?.token;
+            const token = action?.payload?.token || state?.token || localStorage.getItem('token');
             const role = action?.payload?.isAdmin ? ROLES.ADMIN : ROLES.USER
             localStorage.setItem('token', token);
             localStorage.setItem('role', role);
-            localStorage.setItem('user', JSON.stringify(action.payload.token));
+            localStorage.setItem('isAuth', true);
+            // localStorage.setItem('user', JSON.stringify(action.payload.token));
+            localStorage.setItem('user', JSON.stringify(action.payload))
 
             return {
                 ...state,
@@ -37,13 +42,22 @@ const reduce = (state, action) => {
                 role: role,
                 isLooading: false,
                 error: null,
-                data:action?.payload
+                data: action?.payload
 
             };
 
         case AUTH_ACTIONS.LOGOUT:
             ["token", "role", "user"].forEach(item => localStorage.removeItem(item));
-            return initalState;
+            return {
+                isAuth: false,
+                token: null,
+                user: null,
+                role: ROLES.GUEST,
+                isLooading: false,
+                error: null,
+                data: [],
+                users: []
+            };
 
         case AUTH_ACTIONS.SET_ERROR:
             return {
@@ -51,14 +65,7 @@ const reduce = (state, action) => {
                 error: action?.payload?.error,
                 isLooading: false
             };
-        // case AUTH_ACTIONS.LIST_USERS:
-        //     return{
-        //         ...state,
-        //         data:[],
-        //         isLoading:false,
-        //         error: null,
-        //     }
-         
+
         default: {
             return state
         }
@@ -68,16 +75,16 @@ const reduce = (state, action) => {
 const useAuth = () => {
     const [state, dispatch] = useReducer(reduce, initalState);
     const token = state.token || localStorage.getItem('token');
-        const [users, setUsers] = useState([]);
-         const [error, setError] = useState(null);
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-      const [delet, setDeletUser] = useState(null);
+    const [delet, setDeletUser] = useState(null);
 
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
-          
+
 
         }
     }
@@ -111,28 +118,29 @@ const useAuth = () => {
     const getProfileData = async () => {
         dispatch({ type: AUTH_ACTIONS.SET_LOADING });
         try {
-            const apiPath = state.role===ROLES.ADMIN ? AUTH_API_PATHS.ADMIN_PROFILE : AUTH_API_PATHS.USER_PROFILE;
+            const apiPath = state.role === ROLES.ADMIN ? AUTH_API_PATHS.ADMIN_PROFILE : AUTH_API_PATHS.USER_PROFILE;
             // const { data } = await axios.get(AUTH_API + AUTH_API_PATHS.PROFILE, config);
             const { data } = await axios.get(AUTH_API + apiPath, config);
-            const actionType = state.role===ROLES.ADMIN ? AUTH_ACTIONS.AUTHORIZE: AUTH_ACTIONS.AUTHORIZE;
+            const actionType = state.role === ROLES.ADMIN ? AUTH_ACTIONS.AUTHORIZE : AUTH_ACTIONS.AUTHORIZE;
             // dispatch({ type: AUTH_ACTIONS.AUTHORIZE, payload: data  });
-                        dispatch({ type: actionType, payload: data?.data || data  });
+            dispatch({ type: actionType, payload: data?.data || data });
 
         } catch (error) {
-            console.log(error); 
+            console.log(error);
             dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
         }
 
     }
 
     const listUsers = async () => {
-                   setIsLoading(true);
+        setIsLoading(true);
 
         // dispatch({ type: AUTH_ACTIONS.SET_LOADING });
         try {
-           const res = await axios.get("https://react-tt-api.onrender.com/api/users",
-                 {
-                headers:  { Authorization: `Bearer ${token}`}})
+            const res = await axios.get("https://react-tt-api.onrender.com/api/users",
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                })
 
             // dispatch({ type: AUTH_ACTIONS.LIST_USERS, payload: { data } });
             setUsers(res.data.users);
@@ -140,27 +148,27 @@ const useAuth = () => {
         } catch (error) {
             setError(error)
             // dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: error.message });
-        }finally {
-                // dispatch({type:"SET_LOADING"});
-                setIsLoading(false)
-            }
+        } finally {
+            // dispatch({type:"SET_LOADING"});
+            setIsLoading(false)
+        }
     }
 
 
-        const Delete = async (userId) => {
-                const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-                if (confirmDelete) {
-                  setDeletUser(userId);
-                  try {
-               await axios.delete(AUTH_API+AUTH_API_PATHS.DELETE_USER +`${userId}`, config );
-                    setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
-                  } catch (error) {
-                    console.log(error);
-                  } finally {
-                    setDeletUser(null);
-                  }
-                }
-              };
+    const Delete = async (userId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+        if (confirmDelete) {
+            setDeletUser(userId);
+            try {
+                await axios.delete(AUTH_API + AUTH_API_PATHS.DELETE_USER + `${userId}`, config);
+                setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setDeletUser(null);
+            }
+        }
+    };
 
 
 

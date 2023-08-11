@@ -1,58 +1,62 @@
 table {
-    border-collapse: collapse;
-    width: 60%;
-    margin: 0 auto;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: -3px 7px 15px 2px rgb(192, 113, 187);
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-  }
-  .dark table{
-    box-shadow: -3px 7px 15px 2px rgb(230, 210, 228);
-  }
+  border-collapse: collapse;
+  width: 60%;
+  margin: 0 auto;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: -3px 7px 15px 2px rgb(192, 113, 187);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
 
-  
-  table thead th {
-    font-weight: 600;
-    color: #c71c1c;
-    background-color: rgb(130, 130, 240);
-    border-color: rgb(192, 113, 187);
-    padding: 20px 15px;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .dark table thead th{
-    background-color:#765827 ;
-    color: #f9f9f9;
-  }
-  
-  table tbody td {
-    padding: 10px 15px;
-    text-align: center;
-    vertical-align: middle;
-    border-top: 2px solid rgb(192, 113, 187);
-    max-width: 100px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-  
-  table tbody tr:nth-child(even) {
-    background-color: #dad8d8;
-  }
-  .dark  table tbody tr:nth-child(even) {
-    background-color: #EAC696;
-    color: black;
-  }
-  .dark  table tbody tr:nth-child(odd) {
-    background-color: #A1CCD1;
-    color: black;
-  }
+.dark table {
+  box-shadow: -3px 7px 15px 2px rgb(230, 210, 228);
+}
 
-  table tbody tr.active-row {
-    font-weight: 600;
-    color: #009879;
-  }
+
+table thead th {
+  font-weight: 600;
+  color: #c71c1c;
+  background-color: rgb(130, 130, 240);
+  border-color: rgb(192, 113, 187);
+  padding: 20px 15px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dark table thead th {
+  background-color: #765827;
+  color: #f9f9f9;
+}
+
+table tbody td {
+  padding: 10px 15px;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 2px solid rgb(192, 113, 187);
+  max-width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #dad8d8;
+}
+
+.dark table tbody tr:nth-child(even) {
+  background-color: #EAC696;
+  color: black;
+}
+
+.dark table tbody tr:nth-child(odd) {
+  background-color: #A1CCD1;
+  color: black;
+}
+
+table tbody tr.active-row {
+  font-weight: 600;
+  color: #009879;
+}

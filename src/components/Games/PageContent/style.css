@@ -1,52 +1,76 @@
-#pageContent{
+#pageContent {
     padding: 0px 0px 0 20px;
     overflow: hidden;
 }
-.pageContent h2{
+
+.pageContent h2 {
     color: #000;
-font-family: Gilroy;
-font-size: 30px;
-font-style: normal;
-font-weight: 800;
+    font-family: Gilroy;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 800;
 }
-.footcontent{
+
+.footcontent {
     display: flex;
-    justify-content: space-around; 
-     /* align-items: center; */
+    justify-content: space-around;
+    /* align-items: center; */
 }
-.fooimage{
+
+.footcontent3 {
+    position: relative;
+}
+
+.fooimage {
     background-image: url(/public/assets/R.png);
     background-size: cover;
     background-position: center;
     width: 400px;
-    padding:20px ;
+    padding: 20px;
 }
 
- .footcontent2 .imgfoot {
+.footcontent2 .imgfoot {
     width: 200px;
-}  
-.ringlight{
+}
+
+.ringlight {
     position: relative;
     width: 200px;
     height: 200px;
 }
 
-  
-  .imagefo {
+
+.imagefo {
     position: absolute;
     width: 100%;
     height: 100%;
-  } 
-  
-  .imagefo:nth-child(1) {
-    z-index: 1;
-  }
-  
-  .imagefo:nth-child(2) {
-    z-index: 2;
-    width: 60px;
-    height: 60px;
+    top: 0;
+    right: 0;
+}
+
+.imagefo:nth-child(1) {
     position: absolute;
-    top:50px;
-    left:  60px;
-  }
+    width: 400px;
+    height: 400px;
+    top: -230px;
+    left: 60%;
+}
+
+.imagefo:nth-child(2) {
+    z-index: 2;
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    left: 330px;
+}
+
+.footcontent3 p {
+    position: absolute;
+    color: #d6c4c4;
+    bottom: -18px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 15px 40px;
+    width: 82%;
+    /* border-bottom-right-radius: 10px; */
+}

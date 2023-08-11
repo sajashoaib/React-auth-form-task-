@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 const Header = () => {
-    const {role, data}=useAuthContext();
+    const {data } = useAuthContext();
     return (
         <div className='headergames'>
-        
-        <img src="/assets/logogame.png" alt="rgt" /> 
-             <div className='profile'>
-                 <p>Welcome {data.name}</p>
-                 <Link to={PATHS.PROFILE}>   
-                <img src="/assets/profileimg.png" alt="rgt" /></Link> 
-             </div>
-             
+
+            <img src="/assets/logogame.png" alt="rgt" />
+            <div className='profile'>
+                <p>Welcome {data.name}</p>
+                <Link to={PATHS.PROFILE}>
+                    <img src="/assets/profileimg.png" alt="rgt" /></Link>
+            </div>
+
 
         </div>
     )

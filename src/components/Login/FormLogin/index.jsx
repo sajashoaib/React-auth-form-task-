@@ -1,8 +1,10 @@
 import './style.css';
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import OrBeforeAfterLogin from '../OrBeforeAfterLogin';
 import { useAuthContext } from '../../contexts/AuthContext'
 import * as Yup from "yup"
+import{yupResolver} from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form';
 
 const formSchema = Yup.object({
     name: Yup.string()
@@ -16,41 +18,24 @@ const formSchema = Yup.object({
     email: Yup.string()
         .email('Invalid email address')
         .required('Email is required'),
-    checkbox: Yup.boolean()
+    checked: Yup.boolean()
         .oneOf([true], 'You must accept the terms and conditions'),
 })
 
 const FormLogin = () => {
     const { signup, isLooading } = useAuthContext();
-    const [data, setData] = useState({
-        name: '',
-        email: "",
-        password: '',
-        rePassword: '',
-        checkbox: false
-    });
-    const [errors, setErrors] = useState({});
-
+    const { register, handleSubmit, formState:{ errors } } = useForm({
+        resolver: yupResolver(formSchema)
+      });
 
 
     const [lineColor, setLineColor] = useState('#C4C4C4');
     const [lineLength, setLineLength] = useState(0);
 
 
-    const handleSubmit = async (event) => {
+    const onSubmit = async (data,event) => {
         event.preventDefault();
-        try {
-            const formdata = await formSchema.validate(data, { abortEarly: false });
-            console.log(formdata)
-
-        } catch (error) {
-
-            console.log(error);
-            const myErrors = {}
-            error.inner.forEach((error) => { myErrors[error.path] = error.message });
-            setErrors(myErrors);
-
-        }
+        console.log(data)
         if (data.password === data.rePassword)
             signup(
                 {
@@ -63,44 +48,26 @@ const FormLogin = () => {
             alert("please correct password")
         }
     }
+console.log(errors)
 
 
-
-    const handleSubmitt = async (event) => {
+    const handleSubmitt = async (event,data) => {
         event.preventDefault();
-        try {
-            const formdata = await formSchema.validate(data, { abortEarly: false });
-            console.log(formdata)
-
-        } catch (error) {
-
-            console.log(error);
-            const myErrors = {}
-            error.inner.forEach((error) => { myErrors[error.path] = error.message });
-            setErrors(myErrors);
-
-        }
-    }
-
-    const handelChangeInput = ({ target: { value, name } }) => {
-        setData(prevState => ({ ...prevState, [name]: value }))
-    }
-
+        console.log(data)
+           }
 
     return (
         <div className="form-container">
-            <form className="formlogin" onSubmit={handleSubmit}>
+            <form className="formlogin" onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label className="labellogin">Username*</label>
                     <input
                         className="inputlogin"
                         type="text"
-                        name="name"
-                        value={data.name}
-                        onChange={handelChangeInput}
+                        {... register("name")}
                         placeholder="Enter email Name"
                     />
-                    {errors.name && <span>{errors.name}</span>}
+                    {errors.name && (<span>{errors.name.message}</span>)}
                 </div>
                 {/* /**************************************************/}
 
@@ -112,13 +79,11 @@ const FormLogin = () => {
                         className="inputlogin"
                         type="email"
                         id="email"
-                        name="email"
                         placeholder="Enter email address"
-                        value={data.email}
-                        onChange={handelChangeInput}
+                        {... register("email")}
                         required
                     />
-                    {errors.email && <span>{errors.email}</span>}
+                    {errors.email && <span>{errors.email.message}</span>}
                 </div>
 
                 {/* /************************************************ */}
@@ -130,10 +95,8 @@ const FormLogin = () => {
                         className="inputlogin"
                         type="password"
                         id="password"
-                        name="password"
-                        value={data.password}
-                        onChange={handelChangeInput}
                         placeholder="Password"
+                        {... register("password")}
                     />
                     <div
                         style={{
@@ -143,7 +106,7 @@ const FormLogin = () => {
                             transition: 'width 0.3s ease',
                         }}
                     ></div>
-                    {errors.password && <span>{errors.password}</span>}
+                    {errors.password && <span>{errors.password.message}</span>}
                 </div>
                 {/* /************************************************************ */}
 
@@ -153,28 +116,21 @@ const FormLogin = () => {
                         className="inputlogin"
                         type="password"
                         id="rePassword"
-                        name="rePassword"
-                        value={data.rePassword}
-                        onChange={handelChangeInput}
                         placeholder="Repeat password"
+                        {... register("rePassword")}
                     />
-                    {errors.rePassword && <span>{errors.rePassword}</span>}
+                    {errors.rePassword && <span>{errors.rePassword.message}</span>}
                 </div>
                 {/* /************************************************************* */}
                 <div className="checkbox-container">
-
                     <input
                         className="checkbox-input"
                         type="checkbox"
-                        name="checkbox"
-                        checked={data.checkbox}
-                        onChange={handelChangeInput}
-                    />    <label className="checkbox-label">
-                        I agree to the terms and conditions
-                    </label>
+                        id='checked'
+                        {... register('checked')} /> 
 
-                    {errors.checkbox && <p className="error">{errors.checkbox}</p>}
-                </div>
+                      <label htmlFor='checked' className="checkbox-label">I agree to the terms and conditions</label>
+                    {errors.checked && (<span className='error'>{errors.checked.message}</span> )} </div>
                 <button className="regster-account" type="button" onClick={handleSubmitt}>Register Account </button>
                 <OrBeforeAfterLogin />
                 <button className="btn_lg" type="submit"> {isLooading ? 'loading...' : 'Signup'}</button>

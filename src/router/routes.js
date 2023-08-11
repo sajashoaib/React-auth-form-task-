@@ -3,7 +3,7 @@ import AdminGuard from '../components/Guards/AdminGuard';
 import SignupPage from '../pages/SignupPage';
 import LoginPage from '../pages/LoginPage';
 import UserGuard from '../components/Guards/UserGuard';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import GuestGuard from '../components/Guards/GuestGurad';
 import UsersPage from '../pages/UsersPage';
 import ProfilePage from '../pages/ProfilePage';
@@ -15,25 +15,25 @@ const adminPages = [
     children: [
       {
         index: true,
-        element: <GamePage/>,
+        element: <GamePage />,
       },
-        {
+      {
         path: PATHS.ADMIN.SETTINGS,
         element: (
-                  <UsersPage/>
-       ),
+          <UsersPage />
+        ),
       },
 
-      
-      
-     
+
+
+
     ],
-  },{
-      path: PATHS.PROFILE,
-      element: <ProfilePage/>
-    }
-      
-  
+  }, {
+    path: PATHS.PROFILE,
+    element: <ProfilePage />
+  }
+
+
 ];
 
 const userPages = [
@@ -43,18 +43,18 @@ const userPages = [
     children: [
       {
         index: true,
-        element:<GamePage/>,
+        element: <GamePage />,
       },
-      
-       
+
+
     ],
   },
   {
     path: PATHS.PROFILE,
-    element:(
-     <ProfilePage/>
-     
-    ) 
+    element: (
+      <ProfilePage />
+
+    )
   }
 ];
 
@@ -68,7 +68,7 @@ const authPages = [
     ),
   },
   {
-      path: PATHS.SIGNUP,
+    path: PATHS.SIGNUP,
     element: (
       <GuestGuard>
         <SignupPage />
@@ -83,7 +83,7 @@ const guestPages = [
     index: true,
     element: (
       <GuestGuard>
-            <LoginPage />
+        <SignupPage />
       </GuestGuard>
     ),
   }
@@ -92,24 +92,24 @@ const guestPages = [
     path: PATHS.LOGIN,
     element: (
       <GuestGuard>
-       <SignupPage />
+        <SignupPage />
       </GuestGuard>
     ),
   },
 
-  
+
   ...authPages,
 ];
 
 
-  const routes = [
-    ...guestPages,
-    ...userPages,
-    ...adminPages,
+const routes = [
+  ...guestPages,
+  ...userPages,
+  ...adminPages,
 
-    {
-      path: '*',
-      element: <Navigate to={PATHS.ERRORS.NOT_FOUND} replace={true} />,
-    },
-  ];
-  export{routes,guestPages,userPages,adminPages}
+  {
+    path: '*',
+    element: <Navigate to={PATHS.ERRORS.NOT_FOUND} replace={true} />,
+  },
+];
+export { routes, guestPages, userPages, adminPages }

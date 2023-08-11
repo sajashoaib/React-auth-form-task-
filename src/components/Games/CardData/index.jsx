@@ -8,16 +8,13 @@ const backgroundimgcard3 = process.env.PUBLIC_URL + '/assets/backgroundcard3.png
 const logocard1 = process.env.PUBLIC_URL + '/assets/logo1.png';
 const logocard3 = process.env.PUBLIC_URL + '/assets/logo3.png';
 
-
-
-
 const CardData = [
     {
         img: man1,
         logocard: logocard1,
         description: "Join in the new DLC with Kratos to learn more about him and his future",
         backgroundImage: backgroundimgcard1,
-        className: 'class-1', 
+        className: 'class-1',
 
     }, {
         img: Suicides,

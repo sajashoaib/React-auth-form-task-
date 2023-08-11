@@ -8,11 +8,12 @@ import { ROLES, THEMES } from '../../../constants';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 
-const SideBar = ({ activeIcon,showSettings }) => {
-  const {theme,toggleTheme}=useThemeContext();
-  const {logout}=useAuthContext();
-  const handleLogout=()=>{
-   logout();
+const SideBar = ({ activeIcon, showSettings }) => {
+  const { theme, toggleTheme } = useThemeContext();
+  const { logout, role } = useAuthContext();
+  console.log(role)
+  const handleLogout = () => {
+    logout();
   }
   const handleMoonClick = () => {
     toggleTheme(THEMES.DARK);
@@ -26,19 +27,20 @@ const SideBar = ({ activeIcon,showSettings }) => {
     <div className={`sidebar ${theme === 'dark' ? 'dark' : 'light'}`}>
       <div className="sidebars">
         <Link to={PATHS.ADMIN.SETTINGS}>
-        {showSettings && <SidebarItem icon={faGear} active={activeIcon === 'home'} />}
+          {role === ROLES.ADMIN && <SidebarItem icon={faGear} active={activeIcon === 'home'} />}
 
-          <SidebarItem icon={faGear} active={activeIcon === 'home'} /> </Link>
+        </Link>
         <SidebarItem icon={faArrowRightFromBracket} active={activeIcon === 'home'} onClick={handleLogout} />
+
       </div>
       <div className="theme">
-        <SidebarItem icon={faMoon} active={activeIcon === 'home'} onClick={handleMoonClick}/>
-        <SidebarItem icon={duotoneSun} active={activeIcon === 'home'} onClick={handleSunClick}/>
+        <SidebarItem icon={faMoon} active={activeIcon === 'home'} onClick={handleMoonClick} />
+        <SidebarItem icon={duotoneSun} active={activeIcon === 'home'} onClick={handleSunClick} />
       </div>
     </div>
   );
 };
-const SidebarItem = ({ icon, active ,onClick}) => {
+const SidebarItem = ({ icon, active, onClick }) => {
   return (
     <div className={`sidebar-item `} onClick={onClick}>
       <FontAwesomeIcon icon={icon} className='icon' />

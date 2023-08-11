@@ -2,8 +2,8 @@ import React from 'react';
 import './style.css';
 import { useThemeContext } from '../contexts/ThemeContext';
 
-const Tables = ({ isLoading, columns, data, onRowClick = () => {} }) => {
-  const {theme}=useThemeContext();
+const Tables = ({ isLoading, columns, data, onRowClick = () => { } }) => {
+  const { theme } = useThemeContext();
 
   return (
     <>

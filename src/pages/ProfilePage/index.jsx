@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../components/Games/Header'
 import SideBar from '../../components/Games/SideBar'
 import useAuth from '../../components/hooks/useAuth'
@@ -7,47 +7,47 @@ import { ROLES } from '../../constants'
 import './style.css'
 import { useThemeContext } from '../../components/contexts/ThemeContext'
 const ProfilePage = () => {
-    const {theme}=useThemeContext();
-    const { role, getProfileData, isLooading,data } = useAuth(`${AUTH_API}`+'profile');
+    const { theme } = useThemeContext();
+    const { role, getProfileData, isLooading, data } = useAuth(`${AUTH_API}` + 'profile');
 
 
-    
+
     useEffect(() => {
         getProfileData();
     }, []);
 
-  return (
-    
-    <div className={theme}>
-    <Header />
+    return (
 
-<div id="dataprofile" >
-        <SideBar />
+        <div className={theme}>
+            <Header />
 
-    <div className="info">
-          {isLooading ? (
-      <p>Loading profile data...</p>
-    ) : (
-      <div>
-        <h2>Profile Page</h2>
-        {console.log (data?.name)}
+            <div id="dataprofile" >
+                <SideBar />
 
-        <p>Name: {data?.name}</p>
-        <p>Email: {data?.email}</p>
+                <div className="info">
+                    {isLooading ? (
+                        <p>Loading profile data...</p>
+                    ) : (
+                        <div>
+                            <h2>Profile Page</h2>
+                            {console.log(data?.name)}
 
-        {role === ROLES.ADMIN && (
-          <p>Admin-specific profile content...</p>
-        )}
-        {role === ROLES.USER && (
-          <p>User-specific profile content...</p>
-        )}
-      </div>
-    )}  
-    </div>
-  
-</div>
-  
-  </div>)
+                            <p>Name: {data?.name}</p>
+                            <p>Email: {data?.email}</p>
+
+                            {role === ROLES.ADMIN && (
+                                <p>Admin-specific profile content...</p>
+                            )}
+                            {role === ROLES.USER && (
+                                <p>User-specific profile content...</p>
+                            )}
+                        </div>
+                    )}
+                </div>
+
+            </div>
+
+        </div>)
 }
 
 

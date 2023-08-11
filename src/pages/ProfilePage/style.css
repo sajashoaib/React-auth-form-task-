@@ -1,6 +1,5 @@
 #dataprofile{
     display: flex;
-    /* justify-content: space-; */
     gap: 60px;
 }
 .info h2{

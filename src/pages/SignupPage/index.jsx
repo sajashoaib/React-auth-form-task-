@@ -9,17 +9,17 @@ class SignupPage extends Component {
   handleLoginClick = () => {
     this.setState({ isLoginPage: true });
   }
-  render() {    
-    const {isLoginPage} = this.state;
-  if (isLoginPage) {
-    return <LoginPage/>;
-  }
+  render() {
+    const { isLoginPage } = this.state;
+    if (isLoginPage) {
+      return <LoginPage />;
+    }
     return (
       <div>
         <Container>
           <Signup />
           <p className='register' onClick={this.handleLoginClick}>Don't have an account? <span> Register</span></p>
-          </Container>
+        </Container>
       </div>
     );
   }
