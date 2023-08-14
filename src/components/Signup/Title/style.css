@@ -1,17 +1,17 @@
-h2{
-    font-family: Inter;
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 10px;
-    letter-spacing: 0em;
-    text-align: center;
-    padding-top: 60px;
+h2 {
+  font-family: Inter;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 10px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding-top: 60px;
 }
-.gamers{
-font-family: Inter;
-font-size: 18px;
-font-weight: 400;
-letter-spacing: 0em;
-text-align: center;
-color: #8692A6;
+.gamers {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #8692a6;
 }

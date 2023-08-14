@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
-import Login from '../../components/Login';
-import SignupPage from '../SignupPage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import './style.css'
-
-
+import React, { Component } from "react";
+import Login from "../../components/Login";
+import SignupPage from "../SignupPage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import "./style.css";
 
 class LoginPage extends Component {
   state = {
-    isSignUpPage: false
+    isSignUpPage: false,
   };
   handleSignClick = () => {
     this.setState({ isSignUpPage: true });
-  }
+  };
 
   render() {
-    const { isSignUpPage } = this.state
+    const { isSignUpPage } = this.state;
     if (isSignUpPage) {
       return <SignupPage />;
     }
@@ -24,17 +22,12 @@ class LoginPage extends Component {
       <div className="g">
         <span className="backpara" onClick={this.handleSignClick}>
           <FontAwesomeIcon icon={faArrowLeft} className="back-icon" />
-          Back</span>
-        <Login onLogin={this.props.onLogin}>
-
-        </Login>
-
+          Back
+        </span>
+        <Login onLogin={this.props.onLogin}></Login>
       </div>
-
     );
   }
-
 }
 
-
-export default LoginPage
+export default LoginPage;

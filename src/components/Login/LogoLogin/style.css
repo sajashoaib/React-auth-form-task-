@@ -1,18 +1,15 @@
 .logologin {
-position: relative;
+  position: relative;
 }
 
 .logologins {
-width: 108px;
-height: 57px;
-top: 61px;
-left: 89px;
-
+  width: 108px;
+  height: 57px;
+  top: 61px;
+  left: 89px;
 }
 
 .dotts {
-position: absolute;
-width: 20px;
-
-
+  position: absolute;
+  width: 20px;
 }

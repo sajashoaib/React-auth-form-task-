@@ -1,11 +1,10 @@
 .iconsDiv {
-    position: relative;
+  position: relative;
 }
 
 .icons {
-    width: 220px;
-    position: absolute;
-    top: -6px;
-        left: 130px;
-
+  width: 220px;
+  position: absolute;
+  top: -6px;
+  left: 130px;
 }

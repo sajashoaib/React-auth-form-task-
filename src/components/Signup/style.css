@@ -1,12 +1,8 @@
-.internal-cotainer{
-    display: flex;
-    justify-content: space-between;
-    
-    
+.internal-cotainer {
+  display: flex;
+  justify-content: space-between;
 }
 .childDiv {
-    flex-grow: 1;   position: relative;
-  
-  }
- 
-  
+  flex-grow: 1;
+  position: relative;
+}

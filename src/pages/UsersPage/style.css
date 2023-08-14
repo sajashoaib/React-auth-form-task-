@@ -1,10 +1,9 @@
 .usercontent {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .tabel {
-    flex: 1;
+  flex: 1;
 }

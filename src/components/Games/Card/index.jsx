@@ -1,5 +1,5 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 
 const Card = (props) => {
   const { details, reverse } = props;
@@ -16,7 +16,11 @@ const Card = (props) => {
             {reverse ? (
               <>
                 <div className="imgscard1">
-                  <img src={value.logocard} className="man1" />
+                  <img
+                    src={value.logocard}
+                    className="man1"
+                    alt="soory, not loaded"
+                  />
                   <p className="card-description">{value.description}</p>
                 </div>
                 <div className="imagee">
@@ -24,7 +28,6 @@ const Card = (props) => {
                 </div>
               </>
             ) : (
-              
               <>
                 <div className="imagee">
                   <img src={value.img} alt="rgt" className="ma1" />

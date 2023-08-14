@@ -16,7 +16,6 @@ table {
   box-shadow: -3px 7px 15px 2px rgb(230, 210, 228);
 }
 
-
 table thead th {
   font-weight: 600;
   color: #c71c1c;
@@ -47,12 +46,12 @@ table tbody tr:nth-child(even) {
 }
 
 .dark table tbody tr:nth-child(even) {
-  background-color: #EAC696;
+  background-color: #eac696;
   color: black;
 }
 
 .dark table tbody tr:nth-child(odd) {
-  background-color: #A1CCD1;
+  background-color: #a1ccd1;
   color: black;
 }
 

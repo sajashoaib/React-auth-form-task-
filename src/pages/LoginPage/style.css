@@ -1,13 +1,13 @@
 .g {
-    position: relative;
+  position: relative;
 }
 
 .backpara {
-    position: absolute;
-    top: 20px;
-    left: 45%;
-    color: #8692A6;
-    font-family: Inter;
-    font-size: 16px;
-    z-index: 5;
+  position: absolute;
+  top: 20px;
+  left: 45%;
+  color: #8692a6;
+  font-family: Inter;
+  font-size: 16px;
+  z-index: 5;
 }

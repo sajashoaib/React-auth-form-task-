@@ -1,7 +1,7 @@
 .logodesc {
   line-height: 36px;
   font-family: Inter;
-  color: #696F79;
+  color: #696f79;
   position: relative;
   color: white;
   text-align: left;
@@ -17,7 +17,6 @@
   font-weight: 400;
   height: 164px;
   top: 100px;
-
 }
 
 .h-logo {
@@ -35,7 +34,6 @@
   top: 300px;
   left: 380px;
   angle: -180 deg;
-
 }
 
 #apostrophe {
@@ -44,6 +42,5 @@
   font-size: 70px;
   font-weight: 700;
   top: 50px;
-  color: #00DAF7;
-
+  color: #00daf7;
 }

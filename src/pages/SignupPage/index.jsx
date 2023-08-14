@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Container from "../../components/Container";
-import Signup from '../../components/Signup';
-import LoginPage from '../LoginPage';
+import Signup from "../../components/Signup";
+import LoginPage from "../LoginPage";
 class SignupPage extends Component {
   state = {
-    isLoginPage: false
+    isLoginPage: false,
   };
   handleLoginClick = () => {
     this.setState({ isLoginPage: true });
-  }
+  };
   render() {
     const { isLoginPage } = this.state;
     if (isLoginPage) {
@@ -18,11 +18,13 @@ class SignupPage extends Component {
       <div>
         <Container>
           <Signup />
-          <p className='register' onClick={this.handleLoginClick}>Don't have an account? <span> Register</span></p>
+          <p className="register" onClick={this.handleLoginClick}>
+            Don't have an account? <span> Register</span>
+          </p>
         </Container>
       </div>
     );
   }
 }
 
-export default SignupPage
+export default SignupPage;

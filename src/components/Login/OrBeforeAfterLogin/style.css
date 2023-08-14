@@ -1,26 +1,25 @@
 .line-wrapperr {
-    position: relative;
-    display: inline-block;
-    left: 220px;
-    color: #F5F5F5;
-  }
- 
+  position: relative;
+  display: inline-block;
+  left: 220px;
+  color: #f5f5f5;
+}
 
-  .line-wrapperr::before,
-  .line-wrapperr::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 150px;
-    height: 1px;
-    background-color: #F5F5F5;
-  }
+.line-wrapperr::before,
+.line-wrapperr::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 150px;
+  height: 1px;
+  background-color: #f5f5f5;
+}
 
-  .line-wrapperr::before {
-    right: 100%;
-    margin-right: 10px;
-  }
+.line-wrapperr::before {
+  right: 100%;
+  margin-right: 10px;
+}
 
-  .line-wrapperr::after {
-    margin-left: 10px;
-  }
+.line-wrapperr::after {
+  margin-left: 10px;
+}

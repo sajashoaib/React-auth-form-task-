@@ -1,5 +1,5 @@
-import React from 'react'
-import './style.css'
+import React from "react";
+import "./style.css";
 const Card2 = (props) => {
   return (
     <div className="pagecontne">
@@ -10,18 +10,13 @@ const Card2 = (props) => {
               <div className="imgcard2">
                 <img src={value.img} alt="rgt" className="p1" />
               </div>
-              <p className='card2-description'>{value.description}</p>
-
+              <p className="card2-description">{value.description}</p>
             </div>
           </div>
-
         ))}
       </div>
-
     </div>
+  );
+};
 
-
-  )
-}
-
-export default Card2
+export default Card2;

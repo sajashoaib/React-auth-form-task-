@@ -1,8 +1,7 @@
 .form-container {
-  overflow-y: auto;  
-  max-height: 550px; 
+  overflow-y: auto;
+  max-height: 550px;
 }
-
 
 .formlogin {
   display: flex;
@@ -11,7 +10,6 @@
   margin: 30px auto auto 0px;
   font-weight: 500;
   font-family: Inter;
-
 }
 
 .labellogin,
@@ -19,8 +17,7 @@
   margin-top: 10px;
   margin-bottom: 15px;
   font-size: 16px;
-  color: #696F79;
-
+  color: #696f79;
 }
 
 .inputlogin {
@@ -28,9 +25,7 @@
   width: 426px;
   height: 40px;
   border-radius: 6px;
-  border-color: #696F79;
-
-
+  border-color: #696f79;
 }
 
 .inputlogin::placeholder {
@@ -38,17 +33,16 @@
   line-height: 21px;
   text-align: left;
   padding-left: 10px;
-
 }
 
 button {
   padding: 10px 20px;
-  background-color: #1565D8;
+  background-color: #1565d8;
   color: #fff;
   border: none;
   cursor: pointer;
 }
-.checkbox-container{
+.checkbox-container {
   display: flex;
   align-items: center;
 }
@@ -56,7 +50,7 @@ button {
 .checkbox-label {
   margin-left: 8px;
 }
-.checkbox-input{
+.checkbox-input {
   width: 18px;
   height: 18px;
   border: 2px solid #333;
@@ -67,18 +61,18 @@ button {
   transition: border-color 0.2s ease-in-out;
 }
 
-.regster-account{
+.regster-account {
   width: 445px;
   height: 50px;
-border-radius: 6px;
-margin-top: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
 }
-.btn_lg{
+.btn_lg {
   width: 426px;
-height: 54px;
-margin: 20px 0px 20px 5px;
-border-radius: 6px;
-background-color: #fff;
-color: #1565D8;
-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  height: 54px;
+  margin: 20px 0px 20px 5px;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #1565d8;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }

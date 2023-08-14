@@ -1,67 +1,59 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import './style.css';
-import { useAuthContext } from '../../contexts/AuthContext';
-import * as Yup from "yup"
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import "./style.css";
+import { useAuthContext } from "../../contexts/AuthContext";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 const formSchema = Yup.object({
   password: Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('Password is required'),
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 
   email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-
-})
+    .email("Invalid email address")
+    .required("Email is required"),
+});
 const Form = () => {
   const { login, isLooading } = useAuthContext();
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(formSchema)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
   });
-
-
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    console.log(data)
-    login(data)
-  }
-  console.log(errors)
+    console.log(data);
+    login(data);
+  };
+  console.log(errors);
 
   const [showPassword, setShowPassword] = useState(false);
-
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
-
 
   return (
     <div>
       <form className="formsignup" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>Email:</label>
-          <input type="text"
-            name="email"
-            id='email'
-            {...register("email")}
-
-
-          />
+          <input type="text" name="email" id="email" {...register("email")} />
           {errors.email && <span>{errors.email.message}</span>}
         </div>
 
         <div className="password-input">
           <label htmlFor="password">Enter Your Password:</label>
           <input
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             id="password"
             {...register("password")}
-
             placeholder="•••••••••"
           />
           <FontAwesomeIcon
@@ -72,8 +64,7 @@ const Form = () => {
           {errors.password && <span>{errors.password.message}</span>}
         </div>
 
-        <button type='submit'>{isLooading ? 'loading...' : 'login'}</button>
-
+        <button type="submit">{isLooading ? "loading..." : "login"}</button>
       </form>
     </div>
   );

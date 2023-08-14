@@ -1,8 +1,8 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { PATHS } from '../../../router/paths';
-import { ROLES } from '../../../constants';
-import { useAuthContext } from '../../contexts/AuthContext';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { PATHS } from "../../../router/paths";
+import { ROLES } from "../../../constants";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const GuestGuard = ({ children }) => {
   const { role } = useAuthContext();

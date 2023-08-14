@@ -1,27 +1,26 @@
 .headergames {
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px 5px 12px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px 5px 12px;
 }
 
 .headergames img {
-    width: 60px;
+  width: 60px;
 }
 
 .profile {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    color: #000000;
-    font-family: Inter;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #000000;
+  font-family: Inter;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .dark .profile {
-    color: #fffafa;
-
+  color: #fffafa;
 }

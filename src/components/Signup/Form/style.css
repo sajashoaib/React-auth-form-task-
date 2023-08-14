@@ -1,63 +1,58 @@
 form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: 60px auto;
-font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 60px auto;
+  font-weight: 500;
 
-   font-family: Inter;
-
-  }
-  
-  label,.register {
-margin-top: 10px;
-margin-bottom: 10px;
-font-size: 16px;
-color: #696F79;
-
-  }
-  
-  input {
-    padding: 5px;
-    margin-bottom: 25px;
-    height: 35px;
-    width: 287px;
-  }
-  input::placeholder{
-font-size: 12px;
-line-height: 21px;
-text-align: left;
-padding-left: 10px;
-
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color:#1565D8;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-span{
-
-    color: #1565D8;
-    cursor: pointer;
+  font-family: Inter;
 }
-.register{
-    padding: 10px 40px;
-    position: absolute;
-    right: -170px;
-    bottom: 11px;
-}
-.password-input{
-    position: relative;
 
+label,
+.register {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #696f79;
 }
-.password-icon{
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-      
+
+input {
+  padding: 5px;
+  margin-bottom: 25px;
+  height: 35px;
+  width: 287px;
+}
+input::placeholder {
+  font-size: 12px;
+  line-height: 21px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1565d8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+span {
+  color: #1565d8;
+  cursor: pointer;
+}
+.register {
+  padding: 10px 40px;
+  position: absolute;
+  right: -170px;
+  bottom: 11px;
+}
+.password-input {
+  position: relative;
+}
+.password-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
