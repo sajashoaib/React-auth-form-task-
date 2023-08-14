@@ -1,13 +1,16 @@
 import { PATHS } from "./paths";
+import { lazy } from "react";
 import AdminGuard from "../components/Guards/AdminGuard";
-import SignupPage from "../pages/SignupPage";
-import LoginPage from "../pages/LoginPage";
-import UserGuard from "../components/Guards/UserGuard";
-import { Navigate } from "react-router-dom";
 import GuestGuard from "../components/Guards/GuestGurad";
+import { Navigate } from "react-router-dom";
 import UsersPage from "../pages/UsersPage";
 import ProfilePage from "../pages/ProfilePage";
 import GamePage from "../pages/GamePage";
+import UserGuard from "../components/Guards/UserGuard";
+ const SignupPage=lazy(()=>import("../pages/SignupPage") ) ;
+ const LoginPage =lazy(()=>import("../pages/LoginPage"));
+
+
 const adminPages = [
   {
     path: PATHS.ADMIN.ROOT,
@@ -32,7 +35,7 @@ const adminPages = [
 const userPages = [
   {
     path: PATHS.USERS.ROOT,
-    element: <UserGuard />,
+    element: <UserGuard/>,
     children: [
       {
         index: true,

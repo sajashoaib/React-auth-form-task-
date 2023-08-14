@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Router from "./router";
 import AuthProvider from "./components/contexts/AuthContext";
 import ThemeProvider from "./components/contexts/ThemeContext";
+import Preload from "./components/Preload";
+
 function App() {
   const [setIsLoggedIn] = useState(false);
 
@@ -12,7 +14,9 @@ function App() {
     <div className="buttonlogin">
       <AuthProvider>
         <ThemeProvider>
-          <Router />
+          <Suspense fallback={<Preload />}>
+            <Router />
+          </Suspense>
         </ThemeProvider>
       </AuthProvider>
     </div>
