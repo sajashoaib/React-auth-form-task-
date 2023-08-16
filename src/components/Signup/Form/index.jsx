@@ -6,6 +6,8 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import {  NavLink,useNavigate } from "react-router-dom";
+import { PATHS } from "../../../router/paths";
 
 const formSchema = Yup.object({
   password: Yup.string()
@@ -18,6 +20,8 @@ const formSchema = Yup.object({
 });
 const Form = () => {
   const { login, isLooading } = useAuthContext();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -37,6 +41,9 @@ const Form = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
+  };
+  const handleNavigation = () => {
+    navigate(PATHS.SIGNUP);
   };
 
   return (
@@ -65,6 +72,15 @@ const Form = () => {
         </div>
 
         <button type="submit">{isLooading ? "loading..." : "login"}</button>
+
+        <p className="registerpara">
+          Don't have an account?
+          <span>
+            <NavLink to={PATHS.SIGNUP} replace={true} className="register">
+              Register
+            </NavLink>
+          </span>
+        </p>
       </form>
     </div>
   );

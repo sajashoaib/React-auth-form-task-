@@ -51,7 +51,7 @@ const userPages = [
 
 const authPages = [
   {
-    path: PATHS.LOGIN,
+    path: PATHS.SIGNUP,
     element: (
       <GuestGuard>
         <LoginPage />
@@ -59,7 +59,7 @@ const authPages = [
     ),
   },
   {
-    path: PATHS.SIGNUP,
+    path: PATHS.LOGIN,
     element: (
       <GuestGuard>
         <SignupPage />
@@ -70,18 +70,18 @@ const authPages = [
 
 const guestPages = [
   {
-    index: true,
+    index: PATHS.LOGIN,
     element: (
-      <GuestGuard>
-        <SignupPage />
+      <GuestGuard> 
+         <SignupPage />
       </GuestGuard>
     ),
   },
   {
-    path: PATHS.LOGIN,
+    path: PATHS.SIGNUP,
     element: (
       <GuestGuard>
-        <SignupPage />
+      <LoginPage/>
       </GuestGuard>
     ),
   },

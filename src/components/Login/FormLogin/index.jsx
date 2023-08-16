@@ -5,6 +5,8 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+import { PATHS } from "../../../router/paths";
 
 const formSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -56,7 +58,7 @@ const FormLogin = () => {
   return (
     <div className="form-container">
       <form className="formlogin" onSubmit={handleSubmit(onSubmit)}>
-        <div>
+              <div>
           <label className="labellogin">Username*</label>
           <input
             className="inputlogin"

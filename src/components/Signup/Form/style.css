@@ -41,10 +41,8 @@ span {
   cursor: pointer;
 }
 .register {
-  padding: 10px 40px;
-  position: absolute;
-  right: -170px;
-  bottom: 11px;
+  text-decoration: none;
+  color: #1565d8 ;
 }
 .password-input {
   position: relative;

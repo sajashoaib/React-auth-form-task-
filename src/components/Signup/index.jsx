@@ -14,7 +14,7 @@ class Signup extends React.Component {
           <Logo />
           <Description />
         </div>
-        <div className="childDiv ">
+        <div className="childDiv " id="B">
           <Title />
           <Icons />
           <OrBeforeAfter />
